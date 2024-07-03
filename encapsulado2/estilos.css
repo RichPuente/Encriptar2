@@ -1,0 +1,24 @@
+
+.encriptar{
+    background: rgb(56, 67, 223);
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 25px;
+    width: 60%;
+    height: fit-content;
+    margin: auto;
+    padding: 50px;
+    border-radius: 105px;
+}
+
+.desencriptar{
+    height: 10rem;
+}
+
+.presentacion_botones{
+    border-radius: 16px;
+    padding: 16px 650px;
+    width: 200px;
+    color: darkblue;
+    border: 30px;  
+}
