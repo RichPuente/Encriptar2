@@ -37,16 +37,13 @@ function encriptar(){
     destino.value = contenido;
     textoEncriptado =[];
     return;
-    
 }
 
 function desencriptar(){
     var encriptarText = document.getElementById('desencriptar').value;
-    //console.log(encriptarText);
     if(validarTexto(encriptarText)==false){
         for(var i=0; i<encriptarText.length; i++){
             letter = encriptarText.charAt(i)
-            //console.log(letter);
             if(letter == "e"){
                 textoEncriptado.splice(i, 1, "e");
                 i=i+4;
@@ -79,25 +76,46 @@ function desencriptar(){
         destino.value = contenido;
         textoEncriptado =[];
     }
+    return;
 }
 
 function validarTexto(texto){
-    console.log(texto);
+    //console.log(texto);
     let text = texto;
     for (var i = 0; i < texto.length; i++) {
         let letra = text.charAt(i);
-        console.log(letra);
-        if(letra == " "){
-
-           
-        }else{
-            if (letra == letra.toUpperCase()) {
-            alert(`No se permite mayusculas -- ${letra} --`);
+        //console.log(letra);
+        if(caracterEspecial(letra)){
+            alert(`No se permite caracteres especiales -- ${letra} --`);
             validar = true;
             break;
-        }
-
+        }else{
+            if (mayusculas(letra)) {
+                alert(`No se permite mayusculas -- ${letra} --`);
+                validar = true;
+                break;
+            }
         }   
     }
     return validar;
 }
+
+function caracterEspecial(caracter) {
+    var char=/[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/;
+    if (char.test(caracter)) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+function mayusculas(caracter) {
+    var char= /[ABCDEFGHIJKLMNÑOPQRSTWXYZ]+/;
+    if (char.test(caracter)) {
+        return true;
+    } else {
+        return false;
+    } 
+}
+
+//letra == letra.toUpperCase()
