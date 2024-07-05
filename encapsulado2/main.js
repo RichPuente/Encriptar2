@@ -74,9 +74,11 @@ function desencriptar(){
         var destino = document.getElementById('encriptarText');
         var contenido = textoEncriptado.join('');
         destino.value = contenido;
+        ////////
         textoEncriptado =[];
+        destino = document.getElementById('desencriptar').value;
+        destino.value = [];
     }
-    return;
 }
 
 function validarTexto(texto){
@@ -101,7 +103,7 @@ function validarTexto(texto){
 }
 
 function caracterEspecial(caracter) {
-    var char=/[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/;
+    var char=/[áéíóúý!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/;
     if (char.test(caracter)) {
         return true;
     } else {
