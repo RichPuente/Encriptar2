@@ -1,6 +1,7 @@
 let textoEncriptado=[];
 let letter="";
 let validar = false;
+let  contenido = "";
 //let nuevoTexto = "";
 
 
@@ -32,15 +33,19 @@ function encriptar(){
             }
         }
     }
-    var destino = document.getElementById('desencriptar');
-    var contenido = textoEncriptado.join('');
-    destino.value = contenido;
+    var destino = document.getElementById('textoEncriptado');
+    contenido = textoEncriptado.join('');
+    //console.log(contenido);
+    destino.innerHTML = contenido;
+    //destino.value = contenido;
     textoEncriptado =[];
+    document.getElementById("muñeco").setAttribute("hidden", "");
+    document.getElementById("mensajeinicial").style.display = 'none';
     return;
 }
 
 function desencriptar(){
-    var encriptarText = document.getElementById('desencriptar').value;
+    var encriptarText = document.getElementById('encriptarText').value;
     if(validarTexto(encriptarText)==false){
         for(var i=0; i<encriptarText.length; i++){
             letter = encriptarText.charAt(i)
@@ -71,35 +76,42 @@ function desencriptar(){
                 }
             }
         }
-        var destino = document.getElementById('encriptarText');
-        var contenido = textoEncriptado.join('');
-        destino.value = contenido;
-        ////////
+        var destino = document.getElementById('textoEncriptado');
+        contenido = textoEncriptado.join('');
+        destino.innerHTML = contenido;
         textoEncriptado =[];
-        destino = document.getElementById('desencriptar').value;
-        destino.value = [];
+        document.getElementById("muñeco").setAttribute("hidden", "");
+        document.getElementById("mensajeinicial").style.display = 'none';
+        return;
     }
 }
 
 function validarTexto(texto){
-    //console.log(texto);
-    let text = texto;
-    for (var i = 0; i < texto.length; i++) {
-        let letra = text.charAt(i);
-        //console.log(letra);
-        if(caracterEspecial(letra)){
-            alert(`No se permite caracteres especiales -- ${letra} --`);
-            validar = true;
-            break;
-        }else{
-            if (mayusculas(letra)) {
-                alert(`No se permite mayusculas -- ${letra} --`);
+     let text = texto;
+    //console.log(text);
+    if(text =! ""){
+        for (var i = 0; i < texto.length; i++) {
+            var letra = texto.charAt(i);
+            //console.log(letra);
+            if(caracterEspecial(letra)){
+                alert(`No se permite caracteres especiales -- ${letra} --`);
                 validar = true;
+                window.location.reload();
                 break;
-            }
-        }   
+            }else{
+                if (mayusculas(letra)) {
+                    alert(`No se permite mayusculas -- ${letra} --`);
+                    validar = true;
+                    window.location.reload();
+                    break;
+                }
+            }   
+        }
+        return validar;
+    }else{
+        alert("campo vacio");
+        window.location.reload();
     }
-    return validar;
 }
 
 function caracterEspecial(caracter) {
@@ -120,4 +132,7 @@ function mayusculas(caracter) {
     } 
 }
 
-//letra == letra.toUpperCase()
+function copy() {
+    document.getElementById('encriptarText').value = contenido;
+    //console.log(contenido);
+}
